@@ -67,7 +67,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         code_inspector_api_token: ${{ secrets.CODE_INSPECTOR_API_TOKEN }}
-        force_branch: 'none'
+        force_ref: 'none'
         min_quality_grade: 'WARNING'
         min_quality_score: '50'
         max_defects_rate: '0.0001'

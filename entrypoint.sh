@@ -9,7 +9,7 @@ MAX_COMPLEX_FUNCTIONS_RATE=$4
 MAX_LONG_FUNCTIONS_RATE=$5
 PROJECT_NAME=$6
 MAX_TIMEOUT_SEC=$7
-FORCE_BRANCH=$8
+FORCE_REF=$8
 
 
 echo "Code Inspector GitHub action"
@@ -22,6 +22,7 @@ echo "MAX_COMPLEX_FUNCTIONS_RATE: ${MAX_COMPLEX_FUNCTIONS_RATE}"
 echo "MAX_LONG_FUNCTIONS_RATE:    ${MAX_LONG_FUNCTIONS_RATE}"
 echo "PROJECT_NAME:               ${PROJECT_NAME}"
 echo "MAX_TIMEOUT_SEC:            ${MAX_TIMEOUT_SEC}"
+echo "FORCE_REF:                  ${FORCE_REF}"
 
 
 if [ "$INPUT_CODE_INSPECTOR_API_TOKEN" != "" ]; then
@@ -41,9 +42,9 @@ REF_TO_CHECK=${GITHUB_REF}
 SHA_TO_CHECK=${GITHUB_SHA}
 
 # If the branch is forced, we do not specify a SHA and force the branch
-if [ "$FORCE_BRANCH" != "" ] && [ "$FORCE_BRANCH" != "none" ]; then
-  echo "Forcing branch to ${FORCE_BRANCH}"
-  REF_TO_CHECK=$FORCE_BRANCH
+if [ "$FORCE_REF" != "" ] && [ "$FORCE_REF" != "none" ]; then
+  echo "Forcing ref to ${FORCE_REF}"
+  REF_TO_CHECK=FORCE_REF
   SHA_TO_CHECK="none"
 fi
 
