@@ -7,9 +7,11 @@ inputs:
   code_inspector_access_key:
     description: 'Access key on Code Inspector. Set to none if you use the API Token.'
     required: true
+    default: ''
   code_inspector_secret_key:
     description: 'Secret key on Code Inspector. Set to none if you use the API Token.'
     required: true
+    default: ''
   code_inspector_api_token:
     description: 'API Token to access Code Inspector. Set to none if you use access and secret keys'
     required: true
