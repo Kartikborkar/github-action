@@ -44,7 +44,7 @@ inputs:
     description: 'Timeout before giving up (in case analysis takes too long). Default is 10 minutes'
     required: true
     default: '600'
-  code_inspector_force_ref:
+  force_ref:
     description: 'Force the GitHub action to analyze a given ref. Leave to none if you want to analyze branch being pushed (default)'
     required: true
     default: 'none'
@@ -62,4 +62,4 @@ runs:
     - ${{ inputs.max_long_functions_rate }}
     - ${{ inputs.project_name }}
     - ${{ inputs.max_timeout_sec }}
-    - ${{ inputs.code_inspector_force_ref }}
+    - ${{ inputs.force_ref }}

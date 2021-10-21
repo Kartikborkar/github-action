@@ -44,7 +44,7 @@ SHA_TO_CHECK=${GITHUB_SHA}
 # If the branch is forced, we do not specify a SHA and force the branch
 if [ "$FORCE_REF" != "" ] && [ "$FORCE_REF" != "none" ]; then
   echo "Forcing ref to ${FORCE_REF}"
-  REF_TO_CHECK=FORCE_REF
+  REF_TO_CHECK=${FORCE_REF}
   SHA_TO_CHECK="none"
 fi
 
