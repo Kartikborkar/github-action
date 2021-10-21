@@ -13,6 +13,7 @@ inputs:
   code_inspector_api_token:
     description: 'API Token to access Code Inspector. Set to none if you use access and secret keys'
     required: true
+    default: ''
   min_quality_grade:
     description: 'Minimum grade. Valid options are EXCELLENT, GOOD, NEUTRAL, WARNING, CRITICAL. Leave blank to ignore.'
     required: true
