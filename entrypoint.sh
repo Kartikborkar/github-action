@@ -23,9 +23,6 @@ echo "MAX_LONG_FUNCTIONS_RATE:    ${MAX_LONG_FUNCTIONS_RATE}"
 echo "PROJECT_NAME:               ${PROJECT_NAME}"
 echo "MAX_TIMEOUT_SEC:            ${MAX_TIMEOUT_SEC}"
 
-echo "INPUT_CODE_INSPECTOR_API_TOKEN:            ${INPUT_CODE_INSPECTOR_API_TOKEN}"
-echo "INPUT_CODE_INSPECTOR_ACCESS_KEY:            ${INPUT_CODE_INSPECTOR_ACCESS_KEY}"
-echo "INPUT_CODE_INSPECTOR_SECRET_KEY:            ${INPUT_CODE_INSPECTOR_SECRET_KEY}"
 
 if [ "$INPUT_CODE_INSPECTOR_API_TOKEN" != "" ]; then
   echo "Authentication using API token"
@@ -44,7 +41,7 @@ REF_TO_CHECK=${GITHUB_REF}
 SHA_TO_CHECK=${GITHUB_SHA}
 
 # If the branch is forced, we do not specify a SHA and force the branch
-if [ "$FORCE_BRANCH" != "" ] && [ "$FORCE_BRANCH" = "none" ]; then
+if [ "$FORCE_BRANCH" != "" ] && [ "$FORCE_BRANCH" != "none" ]; then
   echo "Forcing branch to ${FORCE_BRANCH}"
   REF_TO_CHECK=$FORCE_BRANCH
   SHA_TO_CHECK="none"
