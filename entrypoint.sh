@@ -9,6 +9,7 @@ MAX_COMPLEX_FUNCTIONS_RATE=$4
 MAX_LONG_FUNCTIONS_RATE=$5
 PROJECT_NAME=$6
 MAX_TIMEOUT_SEC=$7
+FORCE_BRANCH=$8
 
 
 echo "Code Inspector GitHub action"
@@ -24,13 +25,24 @@ echo "MAX_TIMEOUT_SEC:            ${MAX_TIMEOUT_SEC}"
 
 export CODE_INSPECTOR_ACCESS_KEY=${INPUT_CODE_INSPECTOR_ACCESS_KEY}
 export CODE_INSPECTOR_SECRET_KEY=${INPUT_CODE_INSPECTOR_SECRET_KEY}
+export CODE_INSPECTOR_API_TOKEN=${INPUT_CODE_INSPECTOR_API_TOKEN}
+
+# By default, use the GitHub ref
+REF_TO_CHECK=${GITHUB_REF}
+SHA_TO_CHECK=${GITHUB_SHA}
+
+# If the branch is forced, we do not specify a SHA and force the branch
+if [ "$FORCE_BRANCH" != "none" ] && [ "$FORCE_BRANCH" != "none" ]; then
+  REF_TO_CHECK=$FORCE_BRANCH
+  SHA_TO_CHECK="none"
+fi
 
 ${CODE_INSPECTOR_BIN} \
   --token "${INPUT_REPO_TOKEN}" \
   --actor "${GITHUB_ACTOR}" \
   --repository "${GITHUB_REPOSITORY}" \
-  --sha "${GITHUB_SHA}" \
-  --ref "${GITHUB_REF}" \
+  --sha "${SHA_TO_CHECK}" \
+  --ref "${REF_TO_CHECK}" \
   --project "${PROJECT_NAME}" \
   --min-quality-score "${MIN_QUALITY_SCORE}" \
   --min-quality-grade "${MIN_QUALITY_GRADE}" \
