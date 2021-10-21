@@ -28,10 +28,12 @@ echo "INPUT_CODE_INSPECTOR_ACCESS_KEY:            ${INPUT_CODE_INSPECTOR_ACCESS_
 echo "INPUT_CODE_INSPECTOR_SECRET_KEY:            ${INPUT_CODE_INSPECTOR_SECRET_KEY}"
 
 if [ "$INPUT_CODE_INSPECTOR_API_TOKEN" != "" ]; then
+  echo "Authentication using API token"
   export CODE_INSPECTOR_API_TOKEN=${INPUT_CODE_INSPECTOR_API_TOKEN}
 fi
 
 if [ "$INPUT_CODE_INSPECTOR_ACCESS_KEY" != "" ] && [ "$INPUT_CODE_INSPECTOR_SECRET_KEY" != "" ]; then
+  echo "Authentication using access/secret keys"
   export CODE_INSPECTOR_ACCESS_KEY=${INPUT_CODE_INSPECTOR_ACCESS_KEY}
   export CODE_INSPECTOR_SECRET_KEY=${INPUT_CODE_INSPECTOR_SECRET_KEY}
 fi
@@ -42,7 +44,8 @@ REF_TO_CHECK=${GITHUB_REF}
 SHA_TO_CHECK=${GITHUB_SHA}
 
 # If the branch is forced, we do not specify a SHA and force the branch
-if [ "$FORCE_BRANCH" != "none" ] && [ "$FORCE_BRANCH" != "none" ]; then
+if [ "$FORCE_BRANCH" != "" ] && [ "$FORCE_BRANCH" = "none" ]; then
+  echo "Forcing branch to ${FORCE_BRANCH}"
   REF_TO_CHECK=$FORCE_BRANCH
   SHA_TO_CHECK="none"
 fi
